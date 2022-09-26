@@ -1,33 +1,29 @@
 const arg = process.argv.slice(2);
 
-const replaceChar = (char, newChar) => {
-  console.log(char, newChar);
+const replaceChar = (char) => {
+  switch (char) {
+  case 'a':
+    char = '4';
+    break;
+  case 'e':
+    char = '3';
+    break;
+  case 'o':
+    char = '0';
+    break;
+  case 'l':
+    char = '1';
+    break;
+  }
+  return char;
 };
 
 const obfuscate = (string) => {
-  const charArray = Array.from(string);
   let obfuscatedString = '';
 
-  console.log(string[2]);
-
-  for (let element of string) {
-    console.log(element);
-    switch (element) {
-    case 'a':
-      element = replaceChar(element, '4');
-      break;
-    case 'e':
-      element = replaceChar(element, '3');
-      break;
-    case 'o':
-      element = replaceChar(element, '0');
-      break;
-    case 'l':
-      element = replaceChar(element, '1');
-      break;
-    }
-
-    obfuscatedString += element;
+  for (let char of string[0]) {
+    char = replaceChar(char);
+    obfuscatedString += char;
   }
 
   return obfuscatedString;
