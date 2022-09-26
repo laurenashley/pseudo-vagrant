@@ -5,13 +5,17 @@ const toPigLatin = (input) => {
   const list = isMultiple ? input : input[0];
 
   if (input.length) {
-    console.log(isMultiple, list);
+    let pigLatinStrings = [];
 
-    // Take head and append to end of each string
+    list.forEach(e => {
+      const head = e[0];
+      pigLatinStrings.push(e.slice(1) + head + 'ay');
+    });
 
-    // Append 'ay' to end of each string
-
-    // Print joint list of new strings
+    // Print joint sentence of new strings
+    console.log(pigLatinStrings.join(' '));
+  } else {
+    console.log('No input provided');
   }
 };
 
