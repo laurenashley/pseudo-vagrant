@@ -9,7 +9,36 @@ const mostPopular = () => {
 
 const printAll = (data) => {
   // outputs a list of everyone and for each of them, the names of who they follow and who follows them
+  let all = {};
+  
+  for (const item in data) {
+    const myName = data[item]['name'];
+    const iFollow = data[item]['follows'];
 
+    all[item] = {};
+    all[item]['name'] = myName;
+    all[item]['follows'] = [];
+    all[item]['followers'] = [];
+
+    // add names of who they are following
+    for (const person of iFollow) {
+      all[item]['follows'].push(data[person]['name']);
+    }
+
+    // add names of who follows them
+    // search in data for item.follows === item
+    for (const item in data) {
+      // console.log('31 ', data[item]['follows']);
+      for (const follower of data[item]['follows']) {
+        console.log('item, follower ', item, follower, data[follower]['name']);
+        if (follower === item) {
+          all[item]['followers'].push(data[follower]);
+        }
+      }
+    }
+  }
+
+  return all;
 };
 
 const unrequitedFollowers = (data) => {
