@@ -14,9 +14,9 @@ const biggestFollower = (data) => {
   return result;
 };
 
-const mostPopular = () => {
+const mostPopular = (data) => {
   // returns the name of the most popular (most followed) individual
-
+  // loop through 
 };
 
 const printAll = (data) => {
@@ -49,7 +49,20 @@ const printAll = (data) => {
 
 const unrequitedFollowers = (data) => {
   // returns a list of names for those who follow someone that doesn't follow them back.
+  let result = [];
+  for (const item in data) {
+    const myName = data[item]['name'];
+    const iFollow = data[item]['follows'];
 
+    for (const person of iFollow) {
+      const followsMeBack = data[person]['follows'].includes(item);
+      if (!followsMeBack) {
+        result.push(myName);
+      }
+    }
+  }
+
+  return result;
 };
 
 /** More Goals **/
@@ -90,7 +103,7 @@ const data = {
     follows: ["f05"]
   }
 };
-
-console.log(printAll(data));
+console.log(data);
+// console.log(printAll(data));
 // console.log(biggestFollower(data));
-// console.log(unrequitedFollowers(data));
+console.log(unrequitedFollowers(data));
