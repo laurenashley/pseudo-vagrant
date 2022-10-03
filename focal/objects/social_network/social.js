@@ -16,17 +16,26 @@ const biggestFollower = (data) => {
 
 const mostPopular = (data) => {
   // returns the name of the most popular (most followed) individual
-  const result = {};
+  const numOfFollowersObj = {};
+  let result = [];
 
+  // Build object that shows how many follows each person has
   for (const item in data) {
-    result[item] = 0;
-    console.log(data[item]['follows']);
     for (const followed of data[item]['follows']) {
-      console.log('25 ', followed);
       // find followed in result obj, inc num by 1
+      let me = data[followed]['name'];
+      numOfFollowersObj[me] = Object.keys(numOfFollowersObj).includes(me) ? numOfFollowersObj[me] += 1 : 1;
     }
   }
 
+  // Find person(s) with highest num of follower
+  const maxValuePerson = Object.keys(numOfFollowersObj).reduce((a, b) => numOfFollowersObj[a] > numOfFollowersObj[b] ? a : b);
+  const maxValue = numOfFollowersObj[maxValuePerson];
+
+  for (const person in numOfFollowersObj) {
+    if (numOfFollowersObj[person] === maxValue) result.push(person);
+  }
+  console.log(`These are the most Popular Accounts and they each have ${maxValue} followers:`)
   return result;
 };
 
