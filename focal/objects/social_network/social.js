@@ -11,6 +11,7 @@ const biggestFollower = (data) => {
       result = data[item]['name'];
     }
   }
+  console.log('The person who follows the most people is: ');
   return result;
 };
 
@@ -63,7 +64,7 @@ const printAll = (data) => {
       }
     }
   }
-
+  console.log('All accounts, who they follow and who follows them: ');
   return all;
 };
 
@@ -81,11 +82,11 @@ const unrequitedFollowers = (data) => {
       }
     }
   }
-
+  console.log('List of people who follow someone that does not follow them back: ');
   return result;
 };
 
-/** More Goals **/
+/** TO DO More Goals **/
 // Identify who has the most followers over 30
 // Identify who follows the most people over 30
 // List everyone and their reach (sum of # of followers and # of followers of followers)
@@ -123,8 +124,8 @@ const data = {
     follows: ["f05"]
   }
 };
-console.log(data);
-// console.log(printAll(data));
-// console.log(biggestFollower(data));
+// console.log(data);
+console.log(printAll(data));
+console.log(biggestFollower(data));
 console.log(mostPopular(data));
-// console.log(unrequitedFollowers(data));
+console.log(unrequitedFollowers(data));
