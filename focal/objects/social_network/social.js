@@ -16,7 +16,18 @@ const biggestFollower = (data) => {
 
 const mostPopular = (data) => {
   // returns the name of the most popular (most followed) individual
-  // loop through 
+  const result = {};
+
+  for (const item in data) {
+    result[item] = 0;
+    console.log(data[item]['follows']);
+    for (const followed of data[item]['follows']) {
+      console.log('25 ', followed);
+      // find followed in result obj, inc num by 1
+    }
+  }
+
+  return result;
 };
 
 const printAll = (data) => {
@@ -106,4 +117,5 @@ const data = {
 console.log(data);
 // console.log(printAll(data));
 // console.log(biggestFollower(data));
-console.log(unrequitedFollowers(data));
+console.log(mostPopular(data));
+// console.log(unrequitedFollowers(data));
