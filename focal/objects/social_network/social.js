@@ -1,5 +1,17 @@
 const biggestFollower = (data) => {
   // Return account that follows the most other accounts
+  let counter = 0;
+  let result = '';
+
+  for (const item in data) {
+    const followsNum = data[item]['follows'].length;
+
+    if (followsNum > counter) {
+      counter = followsNum;
+      result = data[item]['name'];
+    }
+  }
+  return result;
 };
 
 const mostPopular = () => {
@@ -15,6 +27,7 @@ const printAll = (data) => {
     const myName = data[item]['name'];
     const iFollow = data[item]['follows'];
 
+    // Scaffold object to print
     all[item] = {};
     all[item]['name'] = myName;
     all[item]['follows'] = [];
@@ -23,17 +36,10 @@ const printAll = (data) => {
     // add names of who they are following
     for (const person of iFollow) {
       all[item]['follows'].push(data[person]['name']);
-    }
 
-    // add names of who follows them
-    // search in data for item.follows === item
-    for (const item in data) {
-      // console.log('31 ', data[item]['follows']);
-      for (const follower of data[item]['follows']) {
-        console.log('item, follower ', item, follower, data[follower]['name']);
-        if (follower === item) {
-          all[item]['followers'].push(data[follower]);
-        }
+      const followsMeBack = data[person]['follows'].includes(item);
+      if (followsMeBack) {
+        all[item]['followers'].push(data[person]['name']);
       }
     }
   }
@@ -46,7 +52,7 @@ const unrequitedFollowers = (data) => {
 
 };
 
-/** More Goals **/ 
+/** More Goals **/
 // Identify who has the most followers over 30
 // Identify who follows the most people over 30
 // List everyone and their reach (sum of # of followers and # of followers of followers)
