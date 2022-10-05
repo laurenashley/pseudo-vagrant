@@ -12,3 +12,9 @@ node_modules
 
 # Ignore SASS config files
 .sass-cache
+
+# Ignore Sepcified Direcrories
+focal
+lhl-lectures
+lighthouse-lectures
+unit-testing
